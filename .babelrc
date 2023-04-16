@@ -1,0 +1,6 @@
+// babel 语解析,将 es6转换为低级语法
+{
+    "presets": [
+        "@babel/preset-env"
+    ]
+}
