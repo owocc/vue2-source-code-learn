@@ -15,10 +15,23 @@
       //   console.log(Vue);
       //响应式 Vue 响应式:当数据发生变化时,视图会发生对应的改变
       //vue2 是借鉴了 mvvm 模式,并不完全是 mvvm 模式
-      new Vue({
+      const vm = new Vue({
         el: "#app",
-        data: {},
+        data() {
+          return {
+            msg: "hello",
+            info: {
+              name: "hah",
+            },
+            list: [1, 2, 3],
+            arr: [{ item: "hh" }, { k: "heh" }],
+          };
+        },
       });
+      vm._data.info.name = { ha: "hh" };
+
+      vm._data.list.push(10);
+      console.log(vm);
     </script>
   </body>
 </html>
