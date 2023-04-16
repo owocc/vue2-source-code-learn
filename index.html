@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="app">hello</div>
-</body>
+    <!-- 引入打包好的 js 文件 -->
+    <script src="./dist/vue.js"></script>
+    <script>
+      //因为使用了 umd 模式打包,所以会在 windows上有一个 Vue 对象
+      //   console.log(Vue);
+      //响应式 Vue 响应式:当数据发生变化时,视图会发生对应的改变
+      //vue2 是借鉴了 mvvm 模式,并不完全是 mvvm 模式
+      new Vue({
+        el: "#app",
+        data: {},
+      });
+    </script>
+  </body>
 </html>
