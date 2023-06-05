@@ -11,11 +11,18 @@ export function observer(data) {
 //vue2 中使用 Object.defineProperty 来给数据设置代理
 class Observer {
   constructor(value) {
+    
+    //给 value 定义一个属性,让它能调用 Observer 对象的方法
+    Object.defineProperty(value,"__ob__",{
+      enumerable:false,
+      value:this //这个 this 指向当前的 Observer 对象
+    })
+
     //判断数据是数组还是对象
     if (Array.isArray(value)) {
       //将数组的原型链指向新创建的原型上
       value.__proto__ = ArrayMethods;
-      //处理数组对象的劫持
+      //处理数组里对象的劫持
       this.observerArray(value);
     } else {
       this.walk(value);
@@ -33,6 +40,7 @@ class Observer {
     }
   }
   observerArray(value) {
+    //遍历数组,处理对象的劫持
     value.forEach((item) => {
       observer(item);
     });

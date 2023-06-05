@@ -7,7 +7,7 @@
     <title>Document</title>
   </head>
   <body>
-    <div id="app">hello</div>
+    <div id="app"> hello {{msg}}</div>
     <!-- 引入打包好的 js 文件 -->
     <script src="./dist/vue.js"></script>
     <script>
@@ -28,10 +28,7 @@
           };
         },
       });
-      vm._data.info.name = { ha: "hh" };
 
-      vm._data.list.push(10);
-      console.log(vm);
     </script>
   </body>
 </html>

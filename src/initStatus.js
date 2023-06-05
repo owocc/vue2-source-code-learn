@@ -44,6 +44,25 @@ function initData(vm) {
   //通过 typeof 操作符判断是否是一个函数,如果是,就执行函数,得到返回值,否则直接返回data对象
   //这里使用了 call 改变 data 的 this 指向
   data = vm._data = typeof data === "function" ? data.call(vm) : data;
+
+  //data上的数据进行劫持
+  //将data 上的所有属性代理到 vm 上
+  for (let key in data) {
+    proxy(vm, "_data", key);
+  }
   //对数据进行劫持
   observer(data);
+}
+
+
+// 将 data 上的数据代理到 vm 上
+function proxy(vm, source, key) {
+  Object.defineProperty(vm, key, {
+    get() {
+      return vm[source][key];
+    },
+    set(newValue) {
+      vm[source][key] = newValue;
+    },
+  });
 }
